@@ -1,0 +1,108 @@
+* Project 7 Hashing 
+
+* Due Date: Thu 5/18 7:00am
+
+
+
+* Files and Notes
+
+- This project requires:
+  - A Makefile
+  - Doctest based tests
+  - At least three targets in the Makefile
+    1. main (program executable)
+    2. tests (doctest tests executable)
+    3. clean (remove the .o files) 
+  - You should start with either the code from classcode or your own
+    equivalent.
+  - This project should use doctest based testing
+  - If necessary use exceptions for error handling   
+
+* Resources
+- Overview of hash tables (7mins): https://www.youtube.com/watch?v=MfhjkfocRR0\
+- Linear Probing (16mins): https://www.youtube.com/watch?v=CwM-Cxilk4g
+- Sample hash functions (web page) : https://opendsa-server.cs.vt.edu/ODSA/Books/CS3/html/HashFuncExamp.html
+
+* Specifications
+For this assignment you will create a class named *Dictionary* which
+will implement a hash table with open hashing.
+
+Your *Dictionary* class should have a private instance variable that
+refers to an array of linked lists. You can either implement a new
+linked list or use code you've already written. *However* instead of
+storing *int* values in the nodes, the nodes should hold objects of
+type *Person*. The *Person* class is redefined here:
+
+#+NAME: Person.h
+#+begin_src c++
+
+// Person.h
+  #pragma once
+  #include <iostream>
+  class Person{
+   private:
+    std::string first; // first name
+    std::string last; // last name
+    int idnum; // some id number
+
+   public:
+    Person(std::string first, std::string last, int num);
+    std::string get_name();
+    int get_id();
+
+
+  };
+
+
+#+end_src
+
+
+#+NAME: Person.cpp
+#+begin_src c++
+// Person.cpp
+
+  #include <iostream>
+  #include "Person.h"
+
+
+
+  Person::Person(std::string first, std::string last, int num){
+    this->first = first;
+    this->last = last;
+    this->idnum = num;
+  }
+
+  std::string Person::get_name(){
+    return last+", "+first;
+  }
+
+  int Person::get_id(){
+    return idnum;
+
+  }
+
+
+#+end_src
+
+
+You can modify the class if you'd like.
+
+Your hash function should combine the first and last names into a
+single string and then calculate the hash value. You can use a simple
+hash function like from the resource site listed above.
+
+Your *Dictionary* should support the following features:
+
+1. One or more constructors
+2. A destructor that frees all the linked lists
+3. A method to insert a new Person.
+4. A method to retrieve a Person (return nullptr if they're not in the
+   Dictionary).
+5. A Method to get all the keys - that is, all the first+last names.
+
+   
+* Important notes
+1. As indiciated above, you should test your project using doctest
+2. Make sure to use exceptions as we discussed in class to handle error conditions.
+
+
