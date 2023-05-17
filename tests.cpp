@@ -28,11 +28,6 @@ TEST_CASE("Dictionary operations") {
         CHECK_EQ(foundPerson1->get_id(), 123);
         CHECK_EQ(foundPerson2->get_name(), "Smith, Jane");
         CHECK_EQ(foundPerson2->get_id(), 456);
-
-        // Try to find a person not in the dictionary
-        Person person3("Alice", "Johnson", 789);
-        Person* foundPerson3 = dict.find(&person3);
-        CHECK(foundPerson3 == nullptr);
     }
 
     SUBCASE("Get keys") {
@@ -81,9 +76,12 @@ TEST_CASE("Dictionary operations") {
     //Testing exceptions and throws
     SUBCASE("Exceptions and Throws"){
     	Dictionary dict;
-    	Person person("John", "Doe", 123);
+    	Person person1("John", "Doe", 123);
+    	Person person2("Jane", "Smith", 456);
+    	dict.insert(&person1);
     	CHECK_THROWS_AS(dict.insert(nullptr), std::invalid_argument);
     	CHECK_THROWS_AS(dict.find(nullptr), std::invalid_argument);
+    	CHECK_THROWS_AS(dict.find(&person2), std::out_of_range);
     }
 }
 

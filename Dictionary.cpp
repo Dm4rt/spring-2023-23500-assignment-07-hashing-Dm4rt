@@ -23,9 +23,10 @@ Dictionary::Dictionary(int size) : tableSize(size){
 	}
 }
 Dictionary::~Dictionary(){
-	for(int x=0;x<tableSize;x++){
-		table[x]= new List();
+	for(int x=0; x<tableSize; x++){
+		delete table[x];
 	}
+	delete[] table;
 }
 //string folding hashing gotten from:
 //https://opendsa-server.cs.vt.edu/ODSA/Books/CS3/html/HashFuncExamp.html
@@ -62,6 +63,9 @@ Person* Dictionary::find(Person* data){
         	throw std::invalid_argument("Invalid argument. Cannot search for a null pointer.");
     	}
 	int loc = hash(data->get_name(), tableSize);
+	if(table[loc]->find(data)==nullptr){
+		throw std::out_of_range("not found value");
+	}
 	return table[loc]->find(data);
 }
 std::string Dictionary::getKeys(){

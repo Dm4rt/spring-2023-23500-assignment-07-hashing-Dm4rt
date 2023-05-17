@@ -2,7 +2,7 @@ OBJECTS = main.o Dictionary.o List.o Node.o Person.o
 TEST_OBJECTS = tests.o Dictionary.o List.o Node.o Person.o
 
 main: $(OBJECTS)
-	g++ -o main $(OBJECTS)
+	g++ -o main $(TEST_OBJECTS)
 
 tests: $(TEST_OBJECTS)
 	g++ -o tests $(TEST_OBJECTS)
@@ -19,4 +19,4 @@ Node.o: Node.cpp Node.h
 Person.o: Person.cpp Person.h
 
 clean:
-	rm -f $(OBJECTS) 
+	rm -f $(TEST_OBJECTS) $(TEST_OBJECTS)
