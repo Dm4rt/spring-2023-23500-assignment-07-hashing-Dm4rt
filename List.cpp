@@ -142,10 +142,10 @@ std::string List::toString(){
   Node *tmp = this->head;
   std::string result = "";
   while (tmp != nullptr){
-    result = result + tmp->getData()->get_name();
-    result = result + "-->";
+    result = result + "(" + tmp->getData()->get_name() + ")";
+    result = result + ", ";
     tmp = tmp->getNext();
   }
-  result = result + "nullptr";
+  //result = result + "nullptr";
   return result;
 }
