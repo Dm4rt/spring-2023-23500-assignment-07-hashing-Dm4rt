@@ -13,7 +13,7 @@ class Dictionary{
 		Dictionary();
 		Dictionary(int size);
 		~Dictionary();
-		int hash(std::string s);
+		int hash(std::string s, int M);
 		void insert(Person* data);
 		Person* find(Person* data);
 		std::string getKeys();

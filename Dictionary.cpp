@@ -25,31 +25,33 @@ Dictionary::~Dictionary(){
 //string folding hashing gotten from:
 //https://opendsa-server.cs.vt.edu/ODSA/Books/CS3/html/HashFuncExamp.html
 //The link you gave us on the project page
-int Dictionary::hash(std::string s) {
+int Dictionary::hash(std::string s, int M) {
   long sum = 0, mul = 1;
   for (int i = 0; i < s.length(); i++) {
     mul = (i % 4 == 0) ? 1 : mul * 256;
     sum += s.at(i) * mul;
   }
-  return (int)(std::abs(sum) % tableSize);
+  return (int)(std::abs(sum) % M);
 }
 void Dictionary::insert(Person* data){
 	//we need to hash first, then insert
 	
 	//hash
-	int loc = hash(data->get_name());
+	int loc = hash(data->get_name(), tableSize);
 	
 	//insert
-	//first check for collision
-	if(table[loc]->length()==0){
-	
-	}else{
-	
-	}
+	table[loc]->insert(data);
 }
 Person* Dictionary::find(Person* data){
-	return nullptr;
+	int loc = hash(data->get_name(), tableSize);
+	return table[loc]->find(data);
 }
-std::string getKeys(){
-	return "";
+std::string Dictionary::getKeys(){
+	std::string allKeys = "";
+	for(int x=0;x<tableSize;x++){
+		if(table[x]->length()!=0){
+			allKeys = allKeys + table[x]->toString();
+		}
+	}
+	return allKeys;
 }
