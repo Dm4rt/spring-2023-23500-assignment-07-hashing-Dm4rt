@@ -14,7 +14,7 @@ List::~List(){
   while (walker != nullptr){
     trailer=  walker;
     walker = walker->getNext();
-    std::cerr << "Deleting " << trailer->getData() << ", ";
+    std::cerr << "Deleting " << trailer->getData()<< ", ";
     delete trailer;
   }
   std::cerr << "\n";
@@ -95,13 +95,13 @@ int List::length(){
 }
 
 
-Person *List::find(Person *data){
+Person* List::find(Person *data){
   Node *walker = head;
   while (walker != nullptr && walker->getData() != data){
     walker = walker->getNext();
   }
   if (walker == nullptr){
-    return "";
+    return nullptr;
   } else {
     return walker->getData();
   }
@@ -142,7 +142,7 @@ std::string List::toString(){
   Node *tmp = this->head;
   std::string result = "";
   while (tmp != nullptr){
-    result = result + tmp->getData();
+    result = result + tmp->getData()->get_name();
     result = result + "-->";
     tmp = tmp->getNext();
   }

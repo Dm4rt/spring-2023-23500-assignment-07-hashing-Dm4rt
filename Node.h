@@ -13,7 +13,7 @@ class Node{
   void setData(Person *data);
   void setNext(Node *next);
 
-  Person getData();
+  Person* getData();
   Node *getNext();
 };
 

@@ -10,6 +10,9 @@ class Person{
 		Person(std::string first, std::string last, int num);
 		std::string get_name();
 		int get_id();
+		
+		friend std::ostream& operator<<(std::ostream& os, Person& person);
+		
 
 
 };

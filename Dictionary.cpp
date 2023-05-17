@@ -5,21 +5,21 @@
 #include <cmath>
 
 Dictionary::Dictionary() : tableSize(10){
-	table = new List[tableSize];
-	for(int x=0;x<10;x++){
-		table[x]= List();
+	table = new List*[tableSize];
+	for(int x=0;x<tableSize;x++){
+		table[x]= new List();
 	}
 }
 
 Dictionary::Dictionary(int size) : tableSize(size){
-	table = new List[tableSize];
+	table = new List*[tableSize];
 	for(int x=0;x<tableSize;x++){
-		table[x]= List();
+		table[x]= new List();
 	}
 }
 Dictionary::~Dictionary(){
 	for(int x=0;x<tableSize;x++){
-		table[x]= List();
+		table[x]= new List();
 	}
 }
 //string folding hashing gotten from:
@@ -35,6 +35,17 @@ int Dictionary::hash(std::string s) {
 }
 void Dictionary::insert(Person* data){
 	//we need to hash first, then insert
+	
+	//hash
+	int loc = hash(data->get_name());
+	
+	//insert
+	//first check for collision
+	if(table[loc]->length()==0){
+	
+	}else{
+	
+	}
 }
 Person* Dictionary::find(Person* data){
 	return nullptr;

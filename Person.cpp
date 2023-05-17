@@ -17,3 +17,10 @@ int Person::get_id(){
 }
 
 
+std::ostream& operator<<(std::ostream& os, Person& person) {
+    os << "Name: " << person.get_name() << ", ID: " << person.get_id();
+    return os;
+}
+
+
+

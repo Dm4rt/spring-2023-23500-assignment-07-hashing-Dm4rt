@@ -8,7 +8,7 @@
 class Dictionary{
 	private:
 		int tableSize;
-    		List* table;
+    		List** table;
 	public:
 		Dictionary();
 		Dictionary(int size);
